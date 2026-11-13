@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>Bingo-er</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='4' y='4' width='56' height='56' rx='10' fill='%23fbf7ec' stroke='%230f7a4a' stroke-width='4'/><text x='30' y='44' font-family='Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%2316241c'>B</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="loading" class="loading" role="status">
+    <div class="loading-tiles" aria-hidden="true"><span>B</span><span>I</span><span>N</span><span>G</span><span>O</span></div>
+    <p id="loading-text">Loading word list…</p>
+  </div>
+
+  <div class="app" hidden>
+    <header class="topbar">
+      <div class="topbar-left">
+        <p class="brand">Bingo-er</p>
+        <button id="list-chip" class="list-chip" aria-haspopup="dialog">Word list</button>
+      </div>
+      <div id="stats" class="stats" aria-label="Stats for this mode"></div>
+    </header>
+
+    <div id="demo-banner" class="banner" hidden>
+      <p>You're on a small demo word list. Install ENABLE with <code>scripts/get_enable.py</code>, or load your own.</p>
+      <button id="demo-open-list" class="btn ghost small">Word list</button>
+      <button class="dismiss" aria-label="Hide this notice">×</button>
+    </div>
+
+    <main>
+      <section class="screen" id="screen-a" data-mode="a" hidden></section>
+      <section class="screen" id="screen-b" data-mode="b" hidden></section>
+      <section class="screen" id="screen-c" data-mode="c" hidden></section>
+    </main>
+
+    <nav class="dock" aria-label="Game modes">
+      <button class="dock-tile" data-mode="a"><span class="tile"><span class="tile-letter">A</span><span class="tile-pts">1</span></span><span class="dock-label">Rack</span></button>
+      <button class="dock-tile" data-mode="b"><span class="tile"><span class="tile-letter">B</span><span class="tile-pts">3</span></span><span class="dock-label">Board</span></button>
+      <button class="dock-tile" data-mode="c"><span class="tile"><span class="tile-letter">C</span><span class="tile-pts">3</span></span><span class="dock-label">Timed</span></button>
+    </nav>
+  </div>
+
+  <dialog id="list-dialog" class="sheet" aria-labelledby="list-title">
+    <form method="dialog" class="sheet-head">
+      <h2 id="list-title">Word list</h2>
+      <button class="dismiss" aria-label="Close">×</button>
+    </form>
+    <p id="list-current" class="list-current"></p>
+    <p id="list-about" class="list-about"></p>
+    <p id="list-tiers" class="list-about"></p>
+    <p id="list-error" class="list-error" role="alert" hidden></p>
+    <div class="sheet-actions">
+      <label class="btn primary">Load your own list<input id="wordlist-input" type="file" accept=".txt,text/plain"></label>
+      <button id="list-reset" class="btn ghost" hidden>Remove my list</button>
+    </div>
+    <p class="list-note">Use a plain text file with one word per line. Your list stays on this device.</p>
+  </dialog>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
